@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
@@ -87,18 +88,22 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
                 }
             }
             when {
-                isClearButtonClicked -> when {
-                    event.action == MotionEvent.ACTION_DOWN -> {
-                        mClearButtonImage = ResourcesCompat.getDrawable(resources,
+                isClearButtonClicked -> when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        mClearButtonImage = ResourcesCompat.getDrawable(
+                            resources,
                             R.drawable.ic_baseline_close_24,
-                            null) as Drawable
+                            null
+                        ) as Drawable
                         showClearButton()
                         return true
                     }
-                    event.action == MotionEvent.ACTION_UP -> {
-                        mClearButtonImage = ResourcesCompat.getDrawable(resources,
+                    MotionEvent.ACTION_UP -> {
+                        mClearButtonImage = ResourcesCompat.getDrawable(
+                            resources,
                             R.drawable.ic_baseline_close_24,
-                            null) as Drawable
+                            null
+                        ) as Drawable
                         when {
                             text != null -> text?.clear()
                         }
